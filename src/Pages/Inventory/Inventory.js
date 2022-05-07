@@ -1,11 +1,34 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 const Inventory = () => {
-    return (
-        <div>
-            <h2>Inventory page</h2>
+  const { id } = useParams();
+  const [product, setProduct] = useState({});
+  useEffect(() => {
+    fetch(`http://localhost:5000/fruits/${id}`)
+      .then((res) => res.json())
+      .then((data) => setProduct(data));
+  }, []);
+  const handleDelivered = () =>{
+      
+  }
+  return (
+    <div>
+      <h2 className="text-center m-3">Fruit Information</h2>
+      <div class="card mx-auto mb-2" style={{width:"500px"}}>
+        <img src={product.img} class="card-img-top" alt="..." />
+        <div class="card-body text-center">
+          <h2 class="card-title">{product.name}</h2>
+          <p class="card-text">{product.description}</p>
+          <h4>Price : ${product.price}</h4>
+          <p>Quantity : {product.quantity}</p>
+          <p>Supplier:{product.supplierName}</p>
+          <p>Sold:{product.sold}</p>
+          <button onClick={handleDelivered}className="btn btn-primary">Delivered</button>
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default Inventory;
