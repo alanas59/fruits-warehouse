@@ -8,6 +8,7 @@ import Register from './Pages/Login/Register/Register';
 import Inventory from './Pages/Inventory/Inventory';
 import Manage from './Pages/Manage/Manage';
 import AddItem from './Pages/AddItem/AddItem';
+import MyItems from './Pages/MyItems/MyItems';
 function App() {
   return (
     <div>
@@ -20,6 +21,7 @@ function App() {
           <Route path='/inventory/:id' element={<Inventory></Inventory>}></Route>
           <Route path='/manage-page' element={<Manage></Manage>}></Route>
           <Route path='/add-item' element={<AddItem></AddItem>}></Route>
+          <Route path='/my-items' element={<MyItems></MyItems>}></Route>
        </Routes>
        <Footer></Footer>
     </div>
