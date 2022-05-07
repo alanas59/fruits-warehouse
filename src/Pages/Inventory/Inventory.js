@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const Inventory = () => {
   const { id } = useParams();
@@ -25,27 +25,27 @@ const Inventory = () => {
         alert("Delivered");
       });
   };
-  const handleSubmit = event =>{
-       event.preventDefault();
-       const stock = event.target.quantity.value;
-       if(stock<=0){
-           alert('Give a positive number');
-           return;
-       }
-       const quantity = product.quantity + parseInt(stock);
-       fetch(`http://localhost:5000/fruits/${id}`, {
-        method: "PUT", // or 'PUT'
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({quantity}),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log("Success:", data);
-          alert("Restocked");
-        });
-  }
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const stock = event.target.quantity.value;
+    if (stock <= 0) {
+      alert("Give a positive number");
+      return;
+    }
+    const quantity = product.quantity + parseInt(stock);
+    fetch(`http://localhost:5000/fruits/${id}`, {
+      method: "PUT", // or 'PUT'
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ quantity }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+        alert("Restocked");
+      });
+  };
   return (
     <div>
       <h2 className="text-center m-3">Fruit Information</h2>
@@ -63,12 +63,22 @@ const Inventory = () => {
             Delivered
           </button>
         </div>
+        {/* form section */}
         <div className="text-center my-2">
           <form onSubmit={handleSubmit}>
             <input type="number" name="quantity" />
             <br />
-            <input type="submit" className="btn btn-warning mt-2" value="Restock" id="" />
+            <input
+              type="submit"
+              className="btn btn-warning mt-2"
+              value="Restock"
+              id=""
+            />
           </form>
+          <div className="my-2">
+             <Link to="/manage-page">Mange products</Link>
+          </div>
+         
         </div>
       </div>
     </div>
