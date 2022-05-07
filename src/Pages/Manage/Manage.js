@@ -23,7 +23,7 @@ const Manage = () => {
   }
   return (
     <div className="container">
-      <h2>Manage Inventories</h2>
+      <h2 className="text-center my-4">Manage Inventories</h2>
       <table class="table">
         <thead>
           <tr>
