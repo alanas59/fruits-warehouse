@@ -9,7 +9,7 @@ const Login = () => {
     useSignInWithEmailAndPassword(auth);
   const [signInWithGoogle, user1, loading1, error1] = useSignInWithGoogle(auth);
 
-  if (user) {
+  if (user || user1) {
     navigate("/");
   }
 

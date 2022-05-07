@@ -9,10 +9,14 @@ const Register = () => {
         loading,
         error,
       ] = useCreateUserWithEmailAndPassword(auth);
+    if(user){
+      console.log(user);
+    }
     const handleSubmit = event =>{
         event.preventDefault();
         const email = event.target.email.value;
         const password = event.target.password.value;
+        console.log(email,password);
         createUserWithEmailAndPassword(email, password,{sendEmailVerification:true});
       }
     return (

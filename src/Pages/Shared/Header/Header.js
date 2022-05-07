@@ -1,7 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../../firebase.init";
+import { signOut } from "firebase/auth";
 const Header = () => {
+  const [user, loading, error] = useAuthState(auth);
+  console.log(user);
+  const logout = () =>{
+    signOut(auth);
+
+  }
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary py-3">
       <div className="container">
@@ -32,11 +40,14 @@ const Header = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/login">
-                Login
-              </Link>
+              {user ? (
+                <button onClick={logout} className="btn btn-primary">Logout</button>
+              ) : (
+                <Link className="nav-link" to="/login">
+                  Login
+                </Link>
+              )}
             </li>
-            
           </ul>
         </div>
       </div>
