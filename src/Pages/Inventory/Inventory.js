@@ -9,22 +9,38 @@ const Inventory = () => {
       .then((res) => res.json())
       .then((data) => setProduct(data));
   }, []);
-  const handleDelivered = () =>{
-      
-  }
+  const handleDelivered = () => {
+    const quantity = product.quantity - 1;
+    const updatedQuantity = { quantity };
+    fetch(`http://localhost:5000/fruits/${id}`, {
+      method: "PUT", // or 'PUT'
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedQuantity),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+        alert('Updated');
+      });
+  };
   return (
     <div>
       <h2 className="text-center m-3">Fruit Information</h2>
-      <div class="card mx-auto mb-2" style={{width:"500px"}}>
+      <div class="card mx-auto mb-2" style={{ width: "500px" }}>
         <img src={product.img} class="card-img-top" alt="..." />
         <div class="card-body text-center">
           <h2 class="card-title">{product.name}</h2>
+          <p>Id:{product._id}</p>
           <p class="card-text">{product.description}</p>
           <h4>Price : ${product.price}</h4>
           <p>Quantity : {product.quantity}</p>
           <p>Supplier:{product.supplierName}</p>
           <p>Sold:{product.sold}</p>
-          <button onClick={handleDelivered}className="btn btn-primary">Delivered</button>
+          <button onClick={handleDelivered} className="btn btn-primary">
+            Delivered
+          </button>
         </div>
       </div>
     </div>
