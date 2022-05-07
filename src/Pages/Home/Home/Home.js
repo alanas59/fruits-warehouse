@@ -1,13 +1,14 @@
 import React from 'react';
 import './Home.css';
-import Products from '../Products/Products';
+
 import Banner from '../Banner/Banner';
+import Fruits from '../Fruits/Fruits';
 
 const Home = () => {
     return (
         <div>
             <Banner></Banner>
-            <Products></Products>
+            <Fruits></Fruits>
         </div>
     );
 };
