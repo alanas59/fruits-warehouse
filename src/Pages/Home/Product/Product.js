@@ -1,8 +1,14 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Product = props => {
  const {product} = props;
- const {name,img,description,price,supplierName,quantity} = product;
+ const navigate = useNavigate();
+ const handleStockUpdate = id =>{
+    const url = `/inventory/${id}`;
+    navigate(url);
+ }
+ const {name,img,description,price,supplierName,quantity,_id} = product;
   return (
     <div className="col-lg-4">
       <div className="card" style={{height:"570px"}}>
@@ -14,7 +20,7 @@ const Product = props => {
           <p>Quantity : {quantity}</p>
           <p>Supplier : {supplierName}</p>
         </div>
-        <button className="btn btn-primary">GO</button>
+        <button onClick={()=>handleStockUpdate(_id)} className="btn btn-primary">stock update</button>
       </div>
     </div>
   );
