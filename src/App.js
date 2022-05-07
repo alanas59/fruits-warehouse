@@ -9,6 +9,7 @@ import Inventory from './Pages/Inventory/Inventory';
 import Manage from './Pages/Manage/Manage';
 import AddItem from './Pages/AddItem/AddItem';
 import MyItems from './Pages/MyItems/MyItems';
+import Blogs from './Pages/Blogs/Blogs';
 function App() {
   return (
     <div>
@@ -22,6 +23,7 @@ function App() {
           <Route path='/manage-page' element={<Manage></Manage>}></Route>
           <Route path='/add-item' element={<AddItem></AddItem>}></Route>
           <Route path='/my-items' element={<MyItems></MyItems>}></Route>
+          <Route path='/blogs' element={<Blogs></Blogs>}></Route>
        </Routes>
        <Footer></Footer>
     </div>
