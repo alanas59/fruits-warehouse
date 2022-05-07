@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Manage = () => {
   const [products,setProducts] = useState([]);
+  const navigate = useNavigate();
   useEffect(()=>{
     fetch("http://localhost:5000/fruits")
     .then((res) => res.json())
@@ -20,6 +22,9 @@ const Manage = () => {
             setProducts(remaining);
         }
     })
+  }
+  const handleAddItem = () =>{
+      navigate('/add-item');
   }
   return (
     <div className="container">
@@ -47,6 +52,9 @@ const Manage = () => {
           }
         </tbody>
       </table>
+      <div className="text-center">
+          <button onClick={handleAddItem} className="btn btn-info my-4">Add new item</button>
+      </div>
     </div>
   );
 };
