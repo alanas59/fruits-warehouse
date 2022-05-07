@@ -54,27 +54,29 @@ const AddItem = () => {
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label className="form-label">Name</label>
-          <input type="text" className="form-control" name="name" />
+          <input type="text" className="form-control" name="name" required />
         </div>
         <div className="mb-3">
           <label className="form-label">Price</label>
-          <input type="text" className="form-control" name="price" />
+          <input type="text" className="form-control" name="price" required />
         </div>
         <div className="mb-3">
           <label className="form-label">Description</label>
-          <input type="text" className="form-control" name="description" />
+          <input type="text" className="form-control" name="description" required/>
         </div>
         <div className="mb-3">
           <label className="form-label">Image Url</label>
-          <input type="text" className="form-control" name="img" />
+          <input type="text" className="form-control" name="img" required/>
         </div>
         <div className="mb-3">
           <label className="form-label">Quantity</label>
-          <input type="text" className="form-control" name="quantity" />
+          <input type="text" className="form-control" name="quantity" 
+          required/>
         </div>
         <div className="mb-3">
           <label className="form-label">Supplier</label>
-          <input type="text" className="form-control" name="supplier" />
+          <input type="text" className="form-control" name="supplier" 
+          required/>
         </div>
         <button className="btn btn-info mb-4">Add Item</button>
       </form>
