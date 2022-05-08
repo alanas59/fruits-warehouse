@@ -10,7 +10,7 @@ const Supports = () => {
     },[])
     return (
         <div className='my-4'>
-            <h2 className='text-center'>Our Supports</h2>
+            <h2 className='text-center'>Our Services</h2>
             <div className='row'>
               {
                   supports.map(support => <Support
