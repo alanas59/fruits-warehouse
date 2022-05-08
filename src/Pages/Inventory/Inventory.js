@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 const Inventory = () => {
   const { id } = useParams();
   const [product, setProduct] = useState({});
-  const [result,setResult] = useState(false);
+  const [result, setResult] = useState(false);
   useEffect(() => {
     fetch(`http://localhost:5000/fruits/${id}`)
       .then((res) => res.json())
@@ -25,13 +25,12 @@ const Inventory = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-       // console.log("Success:", data.acknowledged);
-        if(data.acknowledged){
+        // console.log("Success:", data.acknowledged);
+        if (data.acknowledged) {
           setResult(!result);
         }
         toast("Delivered");
       });
-      
   };
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -51,7 +50,7 @@ const Inventory = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log("Success:", data);
-        if(data.acknowledged){
+        if (data.acknowledged) {
           setResult(!result);
         }
         toast("Restocked");
@@ -70,7 +69,11 @@ const Inventory = () => {
           <h4>Price : ${product.price}</h4>
           <p>Quantity : {product.quantity}</p>
           <p>Supplier:{product.supplierName}</p>
-          <p>Sold:{product.sold}</p>
+          {product.quantity > 0 ? (
+            <p className="text-center text-primary">In Stock</p>
+          ) : (
+            <p className="text-center text-danger">Out of stock</p>
+          )}
           <button onClick={handleDelivered} className="btn btn-primary">
             Delivered
           </button>
