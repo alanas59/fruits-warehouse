@@ -15,11 +15,9 @@ const MyItems = () => {
         setProducts(remaining);
         console.log(remaining);
       });
-  }, []);
+  }, [user]);
 
-  if(loading){
-    return <p>Loading...</p>
-  }
+ 
 
   const handleDelete = (id) => {
     const url = `http://localhost:5000/fruits/${id}`;

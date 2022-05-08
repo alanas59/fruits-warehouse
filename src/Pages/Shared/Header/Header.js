@@ -5,11 +5,10 @@ import auth from "../../../firebase.init";
 import { signOut } from "firebase/auth";
 const Header = () => {
   const [user, loading, error] = useAuthState(auth);
- 
-  const logout = () =>{
-    signOut(auth);
 
-  }
+  const logout = () => {
+    signOut(auth);
+  };
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary py-3">
       <div className="container">
@@ -34,20 +33,36 @@ const Header = () => {
                 Home
               </Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="#">
-                Features
-              </Link>
-            </li>
-            <li className="nav-item">
-              {user ? (
-                <button onClick={logout} className="btn btn-primary">Logout</button>
-              ) : (
+            {user ? (
+              <>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/manage-page">
+                    Manage Items
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/add-item">
+                    Add Item
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/my-items">
+                    My items
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <button onClick={logout} className="btn btn-primary">
+                    Logout
+                  </button>
+                </li>
+              </>
+            ) : (
+              <li className="nav-item">
                 <Link className="nav-link" to="/login">
                   Login
                 </Link>
-              )}
-            </li>
+              </li>
+            )}
           </ul>
         </div>
       </div>
