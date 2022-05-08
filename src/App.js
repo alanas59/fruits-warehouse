@@ -10,6 +10,7 @@ import Manage from './Pages/Manage/Manage';
 import AddItem from './Pages/AddItem/AddItem';
 import MyItems from './Pages/MyItems/MyItems';
 import Blogs from './Pages/Blogs/Blogs';
+import NotFound from './Pages/Shared/NotFound/NotFound';
 function App() {
   return (
     <div>
@@ -24,6 +25,7 @@ function App() {
           <Route path='/add-item' element={<AddItem></AddItem>}></Route>
           <Route path='/my-items' element={<MyItems></MyItems>}></Route>
           <Route path='/blogs' element={<Blogs></Blogs>}></Route>
+          <Route path='*' element={<NotFound></NotFound>}></Route>
        </Routes>
        <Footer></Footer>
     </div>
