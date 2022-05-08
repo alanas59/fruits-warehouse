@@ -23,7 +23,7 @@ const Products = () => {
     <div className="container">
       <div className="row g-5 m-5">
         <h2 className="text-center">My Fruits Inventory</h2>
-        {products.map((product) => (
+        {products.slice(0,6).map((product) => (
           <Product 
           key={product._id}
           product={product}></Product>
