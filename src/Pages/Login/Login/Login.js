@@ -5,6 +5,7 @@ import {
 } from "react-firebase-hooks/auth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
+import Loading from "../../Shared/Loading/Loading";
 const Login = () => {
   const navigate = useNavigate();
   let location = useLocation();
@@ -16,6 +17,10 @@ const Login = () => {
 
   if (user || user1) {
     navigate(from, { replace: true });
+  }
+
+  if(loading || loading1){
+    return <Loading></Loading>
   }
 
   const handleSubmit = (event) => {

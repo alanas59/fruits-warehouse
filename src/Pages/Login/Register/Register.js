@@ -2,12 +2,16 @@ import React from "react";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
 import auth from "../../../firebase.init";
+import Loading from '../../Shared/Loading/Loading';
 
 const Register = () => {
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
   if (user) {
     console.log(user);
+  }
+  if(loading){
+    return <Loading></Loading>
   }
   const handleSubmit = (event) => {
     event.preventDefault();
