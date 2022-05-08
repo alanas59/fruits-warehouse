@@ -31,13 +31,25 @@ const Banner = () => {
       </div>
       <div className="carousel-inner">
         <div className="carousel-item active">
-          <img  src="https://images.unsplash.com/photo-1571068316344-75bc76f77890" className="d-block w-100" alt="..." />
+          <img
+            src="https://i.ibb.co/y6kgh9j/slider3.jpg"
+            className="d-block w-100"
+            alt="..."
+          />
         </div>
         <div className="carousel-item">
-          <img  src="https://images.unsplash.com/photo-1572111504021-40abd3479ddb" className="d-block w-100" alt="..." />
+          <img
+            src="https://i.ibb.co/bz0862Y/slider2.jpg"
+            className="d-block w-100"
+            alt="..."
+          />
         </div>
         <div className="carousel-item">
-          <img  src="https://images.unsplash.com/photo-1572111504021-40abd3479ddb" className="d-block w-100" alt="..." />
+          <img
+            src="https://i.ibb.co/s9LVmSz/slider1.jpg"
+            className="d-block w-100"
+            alt="..."
+          />
         </div>
       </div>
       <button
