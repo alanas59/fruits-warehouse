@@ -9,7 +9,7 @@ const Supports = () => {
         .then(data => setSupports(data));
     },[])
     return (
-        <div className='my-4'>
+        <div className='my-4 container'>
             <h2 className='text-center'>Our Services</h2>
             <div className='row'>
               {
