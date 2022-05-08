@@ -6,11 +6,13 @@ import "react-toastify/dist/ReactToastify.css";
 const Inventory = () => {
   const { id } = useParams();
   const [product, setProduct] = useState({});
+  const [result,setResult] = useState(false);
   useEffect(() => {
     fetch(`http://localhost:5000/fruits/${id}`)
       .then((res) => res.json())
       .then((data) => setProduct(data));
-  }, []);
+  }, [result]);
+
   const handleDelivered = () => {
     const quantity = product.quantity - 1;
     const updatedQuantity = { quantity };
@@ -23,9 +25,13 @@ const Inventory = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Success:", data);
+       // console.log("Success:", data.acknowledged);
+        if(data.acknowledged){
+          setResult(!result);
+        }
         toast("Delivered");
       });
+      
   };
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -45,6 +51,9 @@ const Inventory = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log("Success:", data);
+        if(data.acknowledged){
+          setResult(!result);
+        }
         toast("Restocked");
       });
   };
