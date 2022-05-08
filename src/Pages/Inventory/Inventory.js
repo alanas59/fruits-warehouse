@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Inventory = () => {
   const { id } = useParams();
@@ -22,14 +24,14 @@ const Inventory = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log("Success:", data);
-        alert("Delivered");
+        toast("Delivered");
       });
   };
   const handleSubmit = (event) => {
     event.preventDefault();
     const stock = event.target.quantity.value;
     if (stock <= 0) {
-      alert("Give a positive number");
+      toast("Give a positive number");
       return;
     }
     const quantity = product.quantity + parseInt(stock);
@@ -43,11 +45,12 @@ const Inventory = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log("Success:", data);
-        alert("Restocked");
+        toast("Restocked");
       });
   };
   return (
     <div>
+      <ToastContainer />
       <h2 className="text-center m-3">Fruit Information</h2>
       <div class="card mx-auto mb-2" style={{ width: "500px" }}>
         <img src={product.img} class="card-img-top" alt="..." />
@@ -76,9 +79,8 @@ const Inventory = () => {
             />
           </form>
           <div className="my-2">
-             <Link to="/manage-page">Mange products</Link>
+            <Link to="/manage-page">Mange products</Link>
           </div>
-         
         </div>
       </div>
     </div>
