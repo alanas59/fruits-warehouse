@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Loading from "../../Shared/Loading/Loading";
 import Product from "../Product/Product";
 
 const Products = () => {
@@ -10,6 +11,10 @@ const Products = () => {
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);
+
+  if(products.length===0){
+    return <Loading></Loading>
+  }
           
   const handleManageProducts = () =>{
       navigate('/manage-page');
