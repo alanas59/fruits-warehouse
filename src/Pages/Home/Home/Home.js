@@ -3,6 +3,7 @@ import './Home.css';
 
 import Banner from '../Banner/Banner';
 import Products from '../Products/Products';
+import Supports from '../Supports/Supports';
 
 
 const Home = () => {
@@ -10,6 +11,7 @@ const Home = () => {
         <div>
             <Banner></Banner>
             <Products></Products>
+            <Supports></Supports>
         </div>
     );
 };
