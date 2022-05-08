@@ -1,5 +1,6 @@
 import React from 'react';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { Link } from 'react-router-dom';
 import auth from '../../../firebase.init';
 
 const Register = () => {
@@ -16,8 +17,7 @@ const Register = () => {
         event.preventDefault();
         const email = event.target.email.value;
         const password = event.target.password.value;
-        console.log(email,password);
-        createUserWithEmailAndPassword(email, password,{sendEmailVerification:true});
+        createUserWithEmailAndPassword(email, password,);
       }
     return (
         <div className="container my-4">
@@ -50,6 +50,14 @@ const Register = () => {
               Register
             </button>
           </form>
+          <div className="mt-2">
+            <p>
+              Already have an account?
+              <Link className="text-danger" to="/login">
+                Please Login
+              </Link>
+            </p>
+          </div>
         
         </div>
       </div>

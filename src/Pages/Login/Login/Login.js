@@ -1,6 +1,9 @@
 import React from "react";
-import { useSignInWithEmailAndPassword, useSignInWithGoogle } from "react-firebase-hooks/auth";
-import { useLocation, useNavigate } from "react-router-dom";
+import {
+  useSignInWithEmailAndPassword,
+  useSignInWithGoogle,
+} from "react-firebase-hooks/auth";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
 const Login = () => {
   const navigate = useNavigate();
@@ -51,11 +54,24 @@ const Login = () => {
           <button type="submit" className="btn btn-primary">
             Login
           </button>
+          <div className="mt-2">
+            <p>
+              New to fruits warehouse?
+              <Link className="text-danger" to="/register">
+                Please Register
+              </Link>
+            </p>
+          </div>
           <p className="mt-2 text-danger">{error?.message}</p>
           <p className="mt-2 text-danger">{error1?.message}</p>
         </form>
         <div className="text-center">
-          <button onClick={() => signInWithGoogle()} className="btn btn-primary">Google Sign In</button>
+          <button
+            onClick={() => signInWithGoogle()}
+            className="btn btn-primary"
+          >
+            Google Sign In
+          </button>
         </div>
       </div>
     </div>
