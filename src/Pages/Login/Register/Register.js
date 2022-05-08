@@ -1,14 +1,17 @@
 import React from "react";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 import auth from "../../../firebase.init";
 import Loading from '../../Shared/Loading/Loading';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
   if (user) {
     console.log(user);
+    toast('Email verification sent');
   }
   if(loading){
     return <Loading></Loading>
@@ -17,7 +20,7 @@ const Register = () => {
     event.preventDefault();
     const email = event.target.email.value;
     const password = event.target.password.value;
-    createUserWithEmailAndPassword(email, password);
+    createUserWithEmailAndPassword(email, password,{sendEmailVerification:true});
   };
   return (
     <div className="container my-4">
@@ -33,6 +36,7 @@ const Register = () => {
               className="form-control"
               id="exampleInputEmail1"
               name="email"
+              required
             />
           </div>
           <div className="mb-3">
@@ -44,6 +48,7 @@ const Register = () => {
               className="form-control"
               id="exampleInputPassword1"
               name="password"
+              required
             />
           </div>
           <button type="submit" className="btn btn-primary">
@@ -60,6 +65,7 @@ const Register = () => {
           </p>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

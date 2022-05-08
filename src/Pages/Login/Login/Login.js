@@ -43,6 +43,7 @@ const Login = () => {
               className="form-control"
               id="exampleInputEmail1"
               name="email"
+              required
             />
           </div>
           <div className="mb-3">
@@ -54,6 +55,7 @@ const Login = () => {
               className="form-control"
               id="exampleInputPassword1"
               name="password"
+              required
             />
           </div>
           <button type="submit" className="btn btn-primary">

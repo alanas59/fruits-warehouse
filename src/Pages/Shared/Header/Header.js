@@ -13,7 +13,7 @@ const Header = () => {
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary py-3">
       <div className="container">
         <Link className="navbar-brand" to="/">
-          Navbar
+          My Fruits Warehouse
         </Link>
         <button
           className="navbar-toggler"
