@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import {
+  useSendPasswordResetEmail,
   useSignInWithEmailAndPassword,
   useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 import auth from "../../../firebase.init";
 import Loading from "../../Shared/Loading/Loading";
+import 'react-toastify/dist/ReactToastify.css';
 const Login = () => {
+  const [email,setEmail] = useState("");
   const navigate = useNavigate();
   let location = useLocation();
   let from = location.state?.from?.pathname || "/";
@@ -14,21 +18,32 @@ const Login = () => {
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
   const [signInWithGoogle, user1, loading1, error1] = useSignInWithGoogle(auth);
+  const [sendPasswordResetEmail] = useSendPasswordResetEmail(
+    auth
+  );
 
   if (user || user1) {
     navigate(from, { replace: true });
   }
 
-  if(loading || loading1){
-    return <Loading></Loading>
+  if (loading || loading1) {
+    return <Loading></Loading>;
+  }
+
+  const handlePasswordRest = async email =>{
+    await sendPasswordResetEmail(email);
+    toast('Sent email');
   }
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const email = event.target.email.value;
+    setEmail(email);
     const password = event.target.password.value;
     signInWithEmailAndPassword(email, password);
   };
+
+
   return (
     <div className="container my-4">
       <div>
@@ -69,6 +84,13 @@ const Login = () => {
               </Link>
             </p>
           </div>
+          <div className="mt-2">
+            <p>Forget Password?
+              <span className="text-danger"
+              onClick={()=> handlePasswordRest(email)}
+              >Reset Password</span>
+            </p>
+          </div>
           <p className="mt-2 text-danger">{error?.message}</p>
           <p className="mt-2 text-danger">{error1?.message}</p>
         </form>
@@ -81,6 +103,7 @@ const Login = () => {
           </button>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };
