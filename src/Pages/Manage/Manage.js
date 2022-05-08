@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const Manage = () => {
   const [products,setProducts] = useState([]);
@@ -10,6 +12,10 @@ const Manage = () => {
     .then((data) => setProducts(data));
   },[]);
   const handleDelete = id =>{
+    const confirm = window.confirm('Are you want to delete?');
+    if(!confirm){
+      return ;
+    }
     const url = `http://localhost:5000/fruits/${id}`;
     fetch(url,{
         method:'DELETE'
@@ -20,6 +26,7 @@ const Manage = () => {
         if(data.deletedCount>0){
             const remaining = products.filter(product=>product._id!=id);
             setProducts(remaining);
+            toast('Successfully deleted');
         }
     })
   }
@@ -55,6 +62,7 @@ const Manage = () => {
       <div className="text-center">
           <button onClick={handleAddItem} className="btn btn-info my-4">Add new item</button>
       </div>
+      <ToastContainer />
     </div>
   );
 };
