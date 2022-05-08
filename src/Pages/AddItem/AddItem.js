@@ -1,6 +1,8 @@
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { toast, ToastContainer } from "react-toastify";
 import auth from "../../firebase.init";
+import 'react-toastify/dist/ReactToastify.css';
 
 const AddItem = () => {
   const [user, loading, error] = useAuthState(auth);
@@ -45,11 +47,12 @@ const AddItem = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log("Success:", data);
-        alert('Inserted');
+        toast("Product Inserted")
       });
   };
   return (
     <div className="container col-lg-6">
+      <ToastContainer />
       <h2 className="text-center my-4">Add a new product</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
