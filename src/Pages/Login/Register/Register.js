@@ -9,10 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const Register = () => {
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
-  if (user) {
-    console.log(user);
-    toast('Email verification sent');
-  }
+  
   if(loading){
     return <Loading></Loading>
   }
@@ -22,6 +19,10 @@ const Register = () => {
     const password = event.target.password.value;
     createUserWithEmailAndPassword(email, password,{sendEmailVerification:true});
   };
+  if (user) {
+    console.log(user);
+    toast('Email verification sent');
+  }
   return (
     <div className="container my-4">
       <div>
