@@ -1,11 +1,15 @@
-import React from 'react';
+import React from "react";
 
 const Footer = () => {
-    return (
-        <div className='bg-warning text-center py-3'>
-            <p><small><b>Copyright@2022</b></small></p>
-        </div>
-    );
+  return (
+    <div className="bg-warning text-center py-3">
+      <p>
+        <small>
+          <b>Copyright@2022</b>
+        </small>
+      </p>
+    </div>
+  );
 };
 
 export default Footer;

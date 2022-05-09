@@ -6,7 +6,11 @@ const Story = () => {
     <div className="container">
       <div className="row my-5">
         <div className="col-lg-6">
-          <img className="story-img" src="https://i.ibb.co/wpNK5P0/orange.png" alt="" />
+          <img
+            className="story-img"
+            src="https://i.ibb.co/wpNK5P0/orange.png"
+            alt=""
+          />
         </div>
         <div className="col-lg-6" style={{ marginTop: "150px" }}>
           <h6>OUR STORY</h6>

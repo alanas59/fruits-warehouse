@@ -2,7 +2,6 @@ import React from "react";
 import "./Home.css";import Banner from "../Banner/Banner";
 import Products from "../Products/Products";
 import Story from "../Story/Story";
-import Loading from "../../Shared/Loading/Loading";
 import Services from "../Services/Services";
 
 const Home = () => {

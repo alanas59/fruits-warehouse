@@ -2,16 +2,16 @@ import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { toast, ToastContainer } from "react-toastify";
 import auth from "../../firebase.init";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
 const MyItems = () => {
   const [products, setProducts] = useState([]);
   const [user, loading, error] = useAuthState(auth);
   useEffect(() => {
-    fetch("http://localhost:5000/fruits",{
-      headers:{
-        authorization:`Bearer ${localStorage.getItem('accessToken')}`
-      }
+    fetch(`http://localhost:5000/items?email=${user.email}`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
     })
       .then((res) => res.json())
       .then((data) => {
@@ -23,12 +23,10 @@ const MyItems = () => {
       });
   }, [user]);
 
- 
-
   const handleDelete = (id) => {
-    const confirm = window.confirm('Are you want to delete?');
-    if(!confirm){
-      return ;
+    const confirm = window.confirm("Are you want to delete?");
+    if (!confirm) {
+      return;
     }
     const url = `http://localhost:5000/fruits/${id}`;
     fetch(url, {
@@ -40,7 +38,7 @@ const MyItems = () => {
         if (data.deletedCount > 0) {
           const remaining = products.filter((product) => product._id != id);
           setProducts(remaining);
-          toast('Successfully deleted');
+          toast("Successfully deleted");
         }
       });
   };

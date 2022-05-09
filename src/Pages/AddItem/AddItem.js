@@ -2,7 +2,7 @@ import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { toast, ToastContainer } from "react-toastify";
 import auth from "../../firebase.init";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
 const AddItem = () => {
   const [user, loading, error] = useAuthState(auth);
@@ -47,8 +47,9 @@ const AddItem = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log("Success:", data);
-        toast("Product Inserted")
+        toast("Product Inserted");
       });
+      event.target.reset();
   };
   return (
     <div className="container col-lg-6">
@@ -65,21 +66,34 @@ const AddItem = () => {
         </div>
         <div className="mb-3">
           <label className="form-label">Description</label>
-          <input type="text" className="form-control" name="description" required/>
+          <input
+            type="text"
+            className="form-control"
+            name="description"
+            required
+          />
         </div>
         <div className="mb-3">
           <label className="form-label">Image Url</label>
-          <input type="text" className="form-control" name="img" required/>
+          <input type="text" className="form-control" name="img" required />
         </div>
         <div className="mb-3">
           <label className="form-label">Quantity</label>
-          <input type="text" className="form-control" name="quantity" 
-          required/>
+          <input
+            type="text"
+            className="form-control"
+            name="quantity"
+            required
+          />
         </div>
         <div className="mb-3">
           <label className="form-label">Supplier</label>
-          <input type="text" className="form-control" name="supplier" 
-          required/>
+          <input
+            type="text"
+            className="form-control"
+            name="supplier"
+            required
+          />
         </div>
         <button className="btn btn-info mb-4">Add Item</button>
       </form>
