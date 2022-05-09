@@ -37,7 +37,7 @@ const AddItem = () => {
       email,
     };
 
-    fetch("http://localhost:5000/fruits", {
+    fetch("https://hidden-shore-43299.herokuapp.com/fruits", {
       method: "POST", // or 'PUT'
       headers: {
         "Content-Type": "application/json",
@@ -49,7 +49,7 @@ const AddItem = () => {
         console.log("Success:", data);
         toast("Product Inserted");
       });
-      event.target.reset();
+    event.target.reset();
   };
   return (
     <div className="container col-lg-6">

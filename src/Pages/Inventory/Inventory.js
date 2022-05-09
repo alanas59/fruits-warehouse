@@ -8,7 +8,7 @@ const Inventory = () => {
   const [product, setProduct] = useState({});
   const [result, setResult] = useState(false);
   useEffect(() => {
-    fetch(`http://localhost:5000/fruits/${id}`)
+    fetch(`https://hidden-shore-43299.herokuapp.com/fruits/${id}`)
       .then((res) => res.json())
       .then((data) => setProduct(data));
   }, [result]);
@@ -16,7 +16,7 @@ const Inventory = () => {
   const handleDelivered = () => {
     const quantity = product.quantity - 1;
     const updatedQuantity = { quantity };
-    fetch(`http://localhost:5000/fruits/${id}`, {
+    fetch(`https://hidden-shore-43299.herokuapp.com/fruits/${id}`, {
       method: "PUT", // or 'PUT'
       headers: {
         "Content-Type": "application/json",
@@ -40,7 +40,7 @@ const Inventory = () => {
       return;
     }
     const quantity = product.quantity + parseInt(stock);
-    fetch(`http://localhost:5000/fruits/${id}`, {
+    fetch(`https://hidden-shore-43299.herokuapp.com/fruits/${id}`, {
       method: "PUT", // or 'PUT'
       headers: {
         "Content-Type": "application/json",

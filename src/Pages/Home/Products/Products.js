@@ -7,7 +7,7 @@ const Products = () => {
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
-    fetch("http://localhost:5000/fruits")
+    fetch("https://hidden-shore-43299.herokuapp.com/fruits")
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);

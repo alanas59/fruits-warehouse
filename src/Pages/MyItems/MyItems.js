@@ -8,11 +8,14 @@ const MyItems = () => {
   const [products, setProducts] = useState([]);
   const [user, loading, error] = useAuthState(auth);
   useEffect(() => {
-    fetch(`http://localhost:5000/items?email=${user?.email}`, {
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-    })
+    fetch(
+      `https://hidden-shore-43299.herokuapp.com/items?email=${user?.email}`,
+      {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);
@@ -24,7 +27,7 @@ const MyItems = () => {
     if (!confirm) {
       return;
     }
-    const url = `http://localhost:5000/fruits/${id}`;
+    const url = `https://hidden-shore-43299.herokuapp.com/fruits/${id}`;
     fetch(url, {
       method: "DELETE",
     })
