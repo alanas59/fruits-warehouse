@@ -8,9 +8,9 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import auth from "../../../firebase.init";
 import Loading from "../../Shared/Loading/Loading";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 const Login = () => {
-  const [email,setEmail] = useState("");
+  const [email, setEmail] = useState("");
   const navigate = useNavigate();
   let location = useLocation();
   let from = location.state?.from?.pathname || "/";
@@ -18,31 +18,41 @@ const Login = () => {
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
   const [signInWithGoogle, user1, loading1, error1] = useSignInWithGoogle(auth);
-  const [sendPasswordResetEmail] = useSendPasswordResetEmail(
-    auth
-  );
+  const [sendPasswordResetEmail] = useSendPasswordResetEmail(auth);
 
   if (user || user1) {
-    navigate(from, { replace: true });
+    // navigate(from, { replace: true });
   }
 
   if (loading || loading1) {
     return <Loading></Loading>;
   }
 
-  const handlePasswordRest = async email =>{
+  const handlePasswordRest = async (email) => {
     await sendPasswordResetEmail(email);
-    toast('Sent email');
-  }
+    toast("Sent email");
+  };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const email = event.target.email.value;
     setEmail(email);
     const password = event.target.password.value;
-    signInWithEmailAndPassword(email, password);
+    await signInWithEmailAndPassword(email, password);
+    fetch("http://localhost:5000/login", {
+      method: "POST", // or 'PUT'
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({email}),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+        localStorage.setItem('accessToken',data.accessToken);
+        navigate(from, { replace: true });
+      });
   };
-
 
   return (
     <div className="container my-4">
@@ -85,10 +95,14 @@ const Login = () => {
             </p>
           </div>
           <div className="mt-2">
-            <p>Forget Password?
-              <span className="text-danger"
-              onClick={()=> handlePasswordRest(email)}
-              >Reset Password</span>
+            <p>
+              Forget Password?
+              <span
+                className="text-danger"
+                onClick={() => handlePasswordRest(email)}
+              >
+                Reset Password
+              </span>
             </p>
           </div>
           <p className="mt-2 text-danger">{error?.message}</p>

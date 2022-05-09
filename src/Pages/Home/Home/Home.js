@@ -1,23 +1,19 @@
-import React from 'react';
-import './Home.css';
-
-import Banner from '../Banner/Banner';
-import Products from '../Products/Products';
-import Supports from '../Supports/Supports';
-import Story from '../Story/Story';
-import Loading from '../../Shared/Loading/Loading';
-
+import React from "react";
+import "./Home.css";import Banner from "../Banner/Banner";
+import Products from "../Products/Products";
+import Story from "../Story/Story";
+import Loading from "../../Shared/Loading/Loading";
+import Services from "../Services/Services";
 
 const Home = () => {
-    return (
-        <div>
-            <Banner></Banner>
-            <Story></Story>
-            <Products></Products>
-            <Supports></Supports>
-            
-        </div>
-    );
+  return (
+    <div>
+      <Banner></Banner>
+      <Story></Story>
+      <Products></Products>
+      <Services></Services>
+    </div>
+  );
 };
 
 export default Home;

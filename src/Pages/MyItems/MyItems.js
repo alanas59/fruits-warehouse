@@ -8,7 +8,11 @@ const MyItems = () => {
   const [products, setProducts] = useState([]);
   const [user, loading, error] = useAuthState(auth);
   useEffect(() => {
-    fetch("http://localhost:5000/fruits")
+    fetch("http://localhost:5000/fruits",{
+      headers:{
+        authorization:`Bearer ${localStorage.getItem('accessToken')}`
+      }
+    })
       .then((res) => res.json())
       .then((data) => {
         const remaining = data.filter(

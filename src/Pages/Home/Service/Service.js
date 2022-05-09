@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Support = props => {
-    const {support} = props;
-    const {name,img,description} = support;
+const Service = props => {
+    const {service} = props;
+    const {name,img,description} = service;
     return (
         <div className='col-lg-3  text-center my-4'>
             <img src={img} alt="" />
@@ -12,4 +12,4 @@ const Support = props => {
     );
 };
 
-export default Support;
+export default Service;
